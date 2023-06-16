@@ -35,3 +35,10 @@ func (c *Chat) AddMessage(m *Message) error {
 	}
 
 }
+
+func (c *Chat) RefreshTokenUsage() {
+	c.TokenUsage = 0
+	for m := range c.Messages {
+		c.TokenUsage += c.Messages[m].GetQtdTokens()
+	}
+}
